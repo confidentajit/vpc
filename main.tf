@@ -71,12 +71,12 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_instance" "Test-VM" {
+  count=length(var.instancename)
   ami = data.aws_ami.linux.id
   instance_type = var.instance_type
   availability_zone = element(var.availability_zone,count.index)
- 
   key_name = aws_key_pair.ajit.id
-  count=length(var.instancename)
+  subnet_id = aws_subnet.public[count.index].id
   vpc_security_group_ids = [aws_security_group.test-sg.id]
   tags = {
     name= "${var.name}-VM"

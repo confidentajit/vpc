@@ -17,7 +17,7 @@ variable "subnet_cidr" {
 }
 variable "azs" {
 	type = list
-	default = ["us-east-1a", "us-east-1b"]
+	default = ["us-east-1b", "us-east-1a"]
 }
 variable "subnet-name" {
   type = list
